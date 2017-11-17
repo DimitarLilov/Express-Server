@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Demo Server</title>
+    <link href="/css/site.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <ul class="menu">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/about">About</a>
+                </li>
+                 <li>
+                    <a href="/admin">Admin Panel</a>
+                </li>
+                {{#if currentUser}}
+                <li>{{currentUser.username}}</li>
+                <li>
+                    <form id="logout-form" action="/user/logout" method="POST"></form>
+                    <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                </li>
+                {{else}}
+                <li>
+                    <a href="/user/register">Register</a>
+                </li>
+                <li>
+                    <a href="/user/login">Login</a>
+                </li>
+                {{/if}}
+            </ul>
+        </header>
+        <main>
+            {{#if globalError}}
+            <span class="error">{{globalError}}</span>
+            {{/if}}
+            {{{body}}}
+        </main>
+    </div>
+</body>
+
+</html>
